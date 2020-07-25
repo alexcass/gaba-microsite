@@ -299,9 +299,188 @@ export const Logo = styled.a`
 `;
 
 export const Hero = styled.section`
-  height: calc(100vh + 84px);
+  height: 100%;
   background: url("./images/herobg2.png") no-repeat;
+  background-attachment: fixed;
+  background-position: left top;
   text-align: center;
+`;
+
+export const LineAnimation = styled.div`
+  @keyframes run {
+    0% {
+      top: -50%;
+    }
+
+    100% {
+      top: 110%;
+    }
+  }
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+
+  div {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  div::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15vh;
+    width: 100%;
+    top: -50%;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      #ffffff 75%,
+      #ffffff 100%
+    );
+    animation: run 7s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  }
+
+  div:nth-child(1) {
+    margin-left: -20%;
+  }
+  div:nth-child(1)::after {
+    animation-delay: 1s;
+  }
+
+  div:nth-child(2) {
+    margin-left: -40%;
+  }
+  div:nth-child(2)::after {
+    animation-delay: 1.5s;
+  }
+
+  div:nth-child(4) {
+    margin-left: 20%;
+  }
+  div:nth-child(4)::after {
+    animation-delay: 2s;
+  }
+
+  div:nth-child(5) {
+    margin-left: 40%;
+  }
+  div:nth-child(5)::after {
+    animation-delay: 2.5s;
+  }
+`;
+
+export const CircleAnimation = styled.div`
+  @keyframes animatecircle {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(-1000px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 9;
+
+  div {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animatecircle 25s linear infinite;
+    bottom: -150px;
+  }
+
+  div:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    animation-delay: 0s;
+  }
+
+  div:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    animation-delay: 2s;
+    animation-duration: 8s;
+  }
+
+  div:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    animation-delay: 4s;
+  }
+
+  div:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    animation-delay: 0s;
+    animation-duration: 8s;
+  }
+
+  div:nth-child(5) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    animation-delay: 0s;
+  }
+
+  div:nth-child(6) {
+    left: 85%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    animation-delay: 0s;
+  }
+`;
+
+export const PageTitle = styled.h1`
+  font-weight: 400;
+  color: #fff;
+  font-size: 60px;
+  margin: 20px 0 5px;
+  line-height: 70px;
+  animation-duration: 1.5s;
+  animation-delay: 0.4s;
+  animation-name: fadeInUp;
+
+  span {
+    display: block;
+    font-weight: bold;
+    min-height: 80px;
+  }
 `;
 
 export const AboutSection = styled.section`
@@ -595,6 +774,12 @@ export const AboutSections = styled.div`
   flex-wrap: wrap;
   padding: 30px 15px;
 
+  > div {
+    animation-duration: 1.5s;
+    animation-delay: 0.4s;
+    animation-name: fadeInUp;
+  }
+
   img {
     margin-top: 30px;
     display: inline-block;
@@ -627,7 +812,7 @@ export const AccordionTitle = styled.h4`
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    padding: 15px 50px 25px 25px;
+    padding: 15px 50px 15px 25px;
     margin: 0;
 
     :after {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   LandingPage,
   Header,
@@ -10,6 +10,9 @@ import {
   HeaderSideButtons,
   JoinButton,
   MenuButton,
+  PageTitle,
+  LineAnimation,
+  CircleAnimation,
   HeroText,
   VideoButton,
   PlayIcon,
@@ -34,6 +37,7 @@ import {
   Copyright,
   SocialLink,
 } from "./App.styles.js";
+import Typed from "typed.js";
 
 function App() {
   const [currentSection, setCurrentSection] = useState("home");
@@ -47,6 +51,7 @@ function App() {
   ];
   const [isScrolling, setIsScrolling] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const typeContainer = useRef(null);
 
   // todo: add debouncer
   const handleScroll = () =>
@@ -69,6 +74,21 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    const typedOptions = {
+      strings: [
+        "No Resource Overload",
+        "Work Smarter not Harder",
+        "Save Time and Money",
+      ],
+      typeSpeed: 30,
+      startDelay: 1200,
+      backSpeed: 20,
+      backDelay: 500,
+      loop: true,
+      loopCount: 5,
+      showCursor: false,
+    };
+    new Typed(typeContainer.current, typedOptions);
 
     return () => {
       window.removeEventListener("scroll", () => handleScroll);
@@ -118,6 +138,23 @@ function App() {
         </HeaderSideButtons>
       </Header>
       <Hero id="hero">
+        <PageTitle>
+          GABA Means <span ref={typeContainer}></span>
+        </PageTitle>
+        <LineAnimation>
+          {new Array(5)
+            .fill(0)
+            .map((line) => (
+              <div />
+            ))}
+        </LineAnimation>
+        <CircleAnimation>
+          {new Array(5)
+            .fill(0)
+            .map((circle) => (
+              <div />
+            ))}
+        </CircleAnimation>
         <img src="./images/herov2.png" alt="" />
       </Hero>
       <AboutSection id="about">
@@ -218,9 +255,9 @@ function App() {
             width="560"
             height="315"
             src="https://www.youtube.com/embed/YbFtpUooQfs"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen=""
+            allowFullScreen=""
           ></iframe>
         </VideoModal>
       </section>
